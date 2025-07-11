@@ -32,12 +32,9 @@ for (let i = 0; i < inputElements.length; i++) {
 }
 
 answersForm.addEventListener('submit', function (e) {
-  e.preventDefault(); // *** CRITICAL: Prevents the default form submission (page reload) ***
-
+  e.preventDefault();
   let correctAnswers = 0;
-  const userAnswers = []; // To store what the user entered (optional, for debugging/display)
-
-
+  const userAnswers = [];
   for (let i = 0; i < inputElements.length; i++) {
     const userAnswer = parseInt(inputElements[i].value);
     userAnswers.push(userAnswer);
