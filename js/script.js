@@ -7,8 +7,8 @@ const inputGroup = document.getElementById('input-group');
 const messageElement = document.getElementById('message');
 
 
-const inputElements = document.querySelectorAll('#input-group input[type="number"]');
-let count = 30;
+const inputElements = document.querySelectorAll('input[type="number"]');
+let count = 22;
 countdownElement.innerText = count;
 let timer = setInterval(function () {
   count--;
@@ -18,34 +18,36 @@ let timer = setInterval(function () {
     countdownElement.innerText = 'Finito il tempo';
 
   } else if (count === 20)
+
     for (let i = 0; i < inputElements.length; i++) {
-      inputElements[i].value = null
+      inputElements[i].value = ''
+      numbersList.classList.add('d-none')
+      answersForm.classList.remove('d-none');
     }
 }, 1000);
 document.getElementById('countdown').innerText = count;
 
 const randomNumbers = []
-for (let i = 0; i < inputElements.length; i++) {
+for (let i = 0; i < 5; i++) {
   const randomNumber = Math.floor(Math.random() * 30) + 1;
-  inputElements[i].value = randomNumber;
   randomNumbers.push(randomNumber)
 }
+document.getElementById('numbers-list').innerText = randomNumbers.join(' ');
 
-answersForm.addEventListener('submit', function (e) {
+answersForm.addEventListener('click', function (e) {
   e.preventDefault();
   let correctAnswers = 0;
   const userAnswers = [];
-
   for (let i = 0; i < inputElements.length; i++) {
     const userAnswer = parseInt(inputElements[i].value);
     userAnswers.push(userAnswer);
-    if (userAnswer === randomNumbers[i]) {
+    if (randomNumbers.includes(userAnswer)) {
       correctAnswers++;
       inputElements[i].classList.add('giusto');
       inputElements[i].classList.remove('sbagliato');
     } else {
-      inputElements[i].classList.add('giusto');
-      inputElements[i].classList.remove('sbagliato');
+      inputElements[i].classList.add('sbagliato');
+      inputElements[i].classList.remove('giusto');
     }
   }
 });
