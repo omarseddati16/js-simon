@@ -17,22 +17,37 @@ let timer = setInterval(function () {
     clearInterval(timer);
     countdownElement.innerText = 'Finito il tempo';
 
-  } else if (count <= 20)
+  } else if (count === 20)
     for (let i = 0; i < inputElements.length; i++) {
       inputElements[i].value = null
     }
 }, 1000);
 document.getElementById('countdown').innerText = count;
 
-
 const randomNumbers = []
-
 for (let i = 0; i < inputElements.length; i++) {
   const randomNumber = Math.floor(Math.random() * 30) + 1;
   inputElements[i].value = randomNumber;
   randomNumbers.push(randomNumber)
 }
 
+answersForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  let correctAnswers = 0;
+  const userAnswers = [];
 
 
-button
+  for (let i = 0; i < inputElements.length; i++) {
+    const userAnswer = parseInt(inputElements[i].value);
+    userAnswers.push(userAnswer);
+    if (userAnswer === randomNumbers[i]) {
+      correctAnswers++;
+      inputElements[i].classList.add('giusto');
+      inputElements[i].classList.remove('sbagliato');
+    } else {
+      inputElements[i].classList.add('giusto');
+      inputElements[i].classList.remove('sbagliato');
+    }
+  }
+});
