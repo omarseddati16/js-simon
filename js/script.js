@@ -35,16 +35,17 @@ answersForm.addEventListener('submit', function (e) {
   e.preventDefault();
   let correctAnswers = 0;
   const userAnswers = [];
+
   for (let i = 0; i < inputElements.length; i++) {
     const userAnswer = parseInt(inputElements[i].value);
     userAnswers.push(userAnswer);
     if (userAnswer === randomNumbers[i]) {
       correctAnswers++;
-      inputElements[i].classList.add('is-valid');
-      inputElements[i].classList.remove('is-invalid');
+      inputElements[i].classList.add('giusto');
+      inputElements[i].classList.remove('sbagliato');
     } else {
-      inputElements[i].classList.add('is-invalid');
-      inputElements[i].classList.remove('is-valid');
+      inputElements[i].classList.add('giusto');
+      inputElements[i].classList.remove('sbagliato');
     }
   }
 });
