@@ -5,10 +5,10 @@ const numbersList = document.getElementById('numbers-list');
 const answersForm = document.getElementById('answers-form');
 const inputGroup = document.getElementById('input-group');
 const messageElement = document.getElementById('message');
-
+const button = document.getElementById('submit-btn')
 
 const inputElements = document.querySelectorAll('input[type="number"]');
-let count = 22;
+let count = 30;
 countdownElement.innerText = count;
 let timer = setInterval(function () {
   count--;
@@ -34,14 +34,14 @@ for (let i = 0; i < 5; i++) {
 }
 document.getElementById('numbers-list').innerText = randomNumbers.join(' ');
 
-answersForm.addEventListener('click', function (e) {
+button.addEventListener('click', function (e) {
   e.preventDefault();
   let correctAnswers = 0;
   const userAnswers = [];
   for (let i = 0; i < inputElements.length; i++) {
     const userAnswer = parseInt(inputElements[i].value);
     userAnswers.push(userAnswer);
-    if (randomNumbers.includes(userAnswer)) {
+    if (userAnswers.includes(randomNumbers[i])) {
       correctAnswers++;
       inputElements[i].classList.add('giusto');
       inputElements[i].classList.remove('sbagliato');
@@ -50,4 +50,5 @@ answersForm.addEventListener('click', function (e) {
       inputElements[i].classList.remove('giusto');
     }
   }
+  messageElement.innerText = `Hai indovinato ${correctAnswers} su ${randomNumbers.length}`;
 });
