@@ -51,4 +51,5 @@ button.addEventListener('click', function (e) {
     }
   }
   messageElement.innerText = `Hai indovinato ${correctAnswers} su ${randomNumbers.length}`;
+
 });
